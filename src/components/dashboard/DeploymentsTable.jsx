@@ -15,11 +15,11 @@ import clsx from "clsx";
 export default function DeploymentsTable({ rows = [] }) {
   return (
     <Card className="rounded-3xl border border-white/5 bg-slate-900/70 p-6 shadow-lg shadow-black/20">
-      <h2 className="text-lg font-semibold text-white mb-4">
-        Recent Deployments
-      </h2>
+      <h2 className="text-lg font-semibold text-white mb-4">Recent Deployments</h2>
 
-      <Table>
+      <div className="-mx-6 px-6">
+        <div className="overflow-x-auto">
+          <Table>
         <TableHeader>
           <TableRow className="border-b border-white/10">
             <TableHead className="text-slate-400">App Name</TableHead>
@@ -56,7 +56,9 @@ export default function DeploymentsTable({ rows = [] }) {
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+          </Table>
+        </div>
+      </div>
     </Card>
   );
 }

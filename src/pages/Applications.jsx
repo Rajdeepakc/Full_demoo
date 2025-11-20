@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import AppSidebar from '@/components/layout/Sidebar.jsx'
 import Topbar from '@/components/layout/Topbar.jsx'
 import { Button } from '@/components/ui/button'
@@ -5,16 +6,17 @@ import { Card } from '@/components/ui/card'
 import { useNavigate } from 'react-router-dom'
 
 function Applications() {
+  const [mobileOpen, setMobileOpen] = useState(false)
   const navigate = useNavigate()
 
   return (
     <div className="flex min-h-screen bg-slate-950 text-white">
-      <AppSidebar />
+      <AppSidebar mobileOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
 
-      <main className="flex flex-1 flex-col gap-2 bg-slate-950 p-6">
-        <Topbar />
+      <main className="flex flex-1 flex-col gap-2 bg-slate-950 p-4 sm:p-6">
+        <Topbar onOpenSidebar={() => setMobileOpen(true)} />
 
-        <div className="mt-6">
+        <div className="mt-6 max-w-6xl w-full mx-auto">
           <nav className="text-sm text-slate-400 mb-4">Applications / New Deployment / Select Application</nav>
           <h1 className="text-3xl font-extrabold">Select Application Source</h1>
 

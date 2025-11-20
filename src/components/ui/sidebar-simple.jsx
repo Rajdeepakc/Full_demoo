@@ -1,11 +1,13 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-export function Sidebar({ children, className, ...props }) {
+export function Sidebar({ children, className, mobile = false, ...props }) {
   return (
     <aside
       className={cn(
-        "flex h-screen w-72 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground",
+        mobile
+          ? "flex h-full w-72 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground"
+          : "flex h-screen w-72 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground",
         className
       )}
       {...props}

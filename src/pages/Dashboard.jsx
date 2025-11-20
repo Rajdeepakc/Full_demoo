@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import AppSidebar from '../components/layout/Sidebar.jsx'
 import Topbar from '../components/layout/Topbar.jsx'
 import StatCards from '../components/dashboard/StatCards.jsx'
@@ -15,12 +16,14 @@ const deployments = [
 
 
 function Dashboard() {
+  const [mobileOpen, setMobileOpen] = useState(false)
+
   return (
-    <div className="flex min-h-screen bg-slate-950 text-white dark ">
-      <AppSidebar />
+    <div className="flex min-h-screen bg-slate-950 text-white dark">
+      <AppSidebar mobileOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
 
       <main className="flex flex-1 flex-col gap-2 bg-slate-950 p-6">
-        <Topbar />
+        <Topbar onOpenSidebar={() => setMobileOpen(true)} />
 
         <StatCards />
 

@@ -3,10 +3,12 @@ import AppSidebar from '@/components/layout/Sidebar.jsx'
 import Topbar from '@/components/layout/Topbar.jsx'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { useNavigate } from 'react-router-dom'
 import Switch from '@/components/ui/switch'
 import { ArrowRight } from 'lucide-react'
 
 function BringYourOwnApp() {
+  const [mobileOpen, setMobileOpen] = useState(false)
   const [sourceType, setSourceType] = useState('docker')
   const [dockerUrl, setDockerUrl] = useState('')
   const [username, setUsername] = useState('')
@@ -14,14 +16,16 @@ function BringYourOwnApp() {
   const [privateRepo, setPrivateRepo] = useState(false)
   const [provider, setProvider] = useState('')
 
+  const navigate = useNavigate()
+
   return (
-    <div className="flex h-screen bg-slate-950 text-white overflow-hidden">
-      <AppSidebar />
+    <div className="flex min-h-screen bg-slate-950 text-white overflow-hidden">
+      <AppSidebar mobileOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
 
-      <main className="flex flex-1 flex-col gap-3 bg-slate-950 pt-1 px-6 pb-4">
-        <Topbar />
+      <main className="flex flex-1 flex-col gap-3 bg-slate-950 pt-1 px-4 sm:px-6 pb-4">
+        <Topbar onOpenSidebar={() => setMobileOpen(true)} />
 
-        <div className="w-full max-w-4xl ml-6 mt-2">
+        <div className="w-full max-w-4xl mx-auto mt-2">
           <div className="mb-4">
             <nav className="text-sm text-slate-400"> 
               <span className="font-medium text-slate-400">Applications</span>
@@ -141,7 +145,11 @@ function BringYourOwnApp() {
             </Card>
 
             <div className="flex justify-end">
-              <Button variant="default" className="bg-blue-500 inline-flex items-center gap-2 mt-2 px-4 py-2">
+              <Button
+                variant="default"
+                onClick={() => navigate('/applications/deployment-mode', { state: { source: 'bring-your-own' } })}
+                className="bg-blue-500 inline-flex items-center gap-2 mt-2 px-4 py-2"
+              >
                 <span>Next</span>
                 <ArrowRight className="h-4 w-4" />
               </Button>

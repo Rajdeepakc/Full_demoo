@@ -70,7 +70,7 @@ function TrendCard() {
       </CardHeader>
 
       <CardContent className="px-0 pt-6">
-        <div className="h-72 w-full">
+        <div className="h-56 md:h-72 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={spendData}
